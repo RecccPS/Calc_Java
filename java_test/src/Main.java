@@ -36,7 +36,11 @@ public class Main {
         if (num1 < 1 || num1 > 10 || num2 < 1 || num2 > 10) {
             throw new IllegalArgumentException("Числа должны быть от 1 до 10");
         }
-
+        
+        if (isRomanNumeral(input) && isArabicNumeral(input)) {
+         throw new IllegalArgumentException("Некорректный ввод: одновременно указаны римские и арабские цифры");
+        }
+        
         int result;
         switch (operator) {
             case "+":
@@ -104,7 +108,10 @@ public class Main {
         return result;
     }
 
-
+    private static boolean isArabicNumeral(String input) {
+        return input.matches(".*\\d+.*");
+    }
+    
     private static boolean isRomanNumeral(String input) {
         return input.contains("I") || input.contains("V") || input.contains("X");
     }
